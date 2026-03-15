@@ -1,39 +1,3 @@
-import os, sys, time, requests, threading, random, re, json, warnings
-from concurrent.futures import ThreadPoolExecutor
-requests.packages.urllib3.disable_warnings()
-warnings.filterwarnings("ignore")
-
-class Grad:
-    @staticmethod
-    def party_mode(): return f"\033[38;2;{random.randint(100,255)};{random.randint(100,255)};{random.randint(100,255)}m"
-    @staticmethod
-    def hot_gradient(): return "\033[38;5;202m"
-RESET = "\033[0m"
-
-class AutoV5:
-    def __init__(self):
-        os.system('clear' if os.name == 'posix' else 'cls')
-        print(f"{Grad.hot_gradient()}--- VĂN ANH HỮU DUYÊN BL ---{RESET}")
-        
-        self.api_token = "f7434c18-242e-4fe2-8da0-3e61df7e45b3"
-        self.long_url = "https://web-rut-gon.com"
-        
-        self.earned = 0
-        self.used_ips = set()
-        self.lock = threading.Lock()
-        self.ua_list = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) Safari/604.1",
-            "Mozilla/5.0 (Linux; Android 10; K) Chrome/122.0.0.0 Mobile"
-        ]
-
-    def rut_gon_link(self):
-        """Xử lý bóc tách JSON chuẩn từ API"""
-        print(f"{Grad.hot_gradient()}[+] Đang tạo link rút gọn mới...{RESET}")
-        try:
-            rand_url = f"{self.long_url}?t={random.randint(100000, 999999)}"
-            api_url = f"https://vuotnhanh.com/api?api={self.api_token}&url={rand_url}"
-            
             response = requests.get(api_url, timeout=10)
             if response.status_code == 200:
                 # Phân tích cú pháp JSON thay vì cắt chuỗi thủ công
